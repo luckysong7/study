@@ -1,0 +1,15 @@
+@CHARSET "UTF-8";
+
+body {
+	font-size: 11pt;
+}
+
+span.c1 {
+	color: gray;
+	font-weight: bolder;
+}
+
+.c2 {
+	color: green;
+	font-style: italic;
+}
