@@ -29,6 +29,6 @@ public class GuestVO {
 	public void setCreated(String created) {
 		this.created = created;
 	}
-	
+	// 수정수정
 
 }
