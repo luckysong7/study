@@ -18,7 +18,7 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.internet.MimeUtility;
 
-
+// TestTest
 
 
 public class SendMail {
@@ -31,8 +31,8 @@ public class SendMail {
 	private String fileFullPath;
 	private String originalFileName;
 
-	private String mailHost; // ¸ÞÀÏ ¼­¹ö
-	private String mailType; // ¸ÞÀÏ À¯Çü
+	private String mailHost; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	private String mailType; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	
 	public SendMail(){
 		this.mailHost = "localhost";
@@ -133,42 +133,42 @@ public class SendMail {
 			
 			Session session = Session.getDefaultInstance(props,null);
 			
-			// ¸ÞÀÏÀ» º¸³½ ¸Þ½ÃÁö Å¬·¡½º
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 			Message msg = new MimeMessage(session);
 			
-			// º¸³»´Â »ç¶÷
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 			if(senderName == null || senderName.equals("")){
 				msg.setFrom(new InternetAddress(senderEmail));
 			}else{
 				msg.setFrom(new InternetAddress(senderEmail,senderName,"UTF-8"));
 			}
 			
-			// ¹Þ´Â »ç¶÷
+			// ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½
 			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(receiverEmail));
 			
-			// Á¦¸ñ
+			// ï¿½ï¿½ï¿½ï¿½
 			msg.setSubject(subject);
 			
-			// html Çü½ÄÀÎ °æ¿ì \r\n À» <br/>fh qusrud
+			// html ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ \r\n ï¿½ï¿½ <br/>fh qusrud
 			if(mailType.indexOf("text/html") != -1){
 				content = content.replaceAll("\r\n", "<br/>");
 				
 			}
 			
-			// ¸ÞÀÏ ³»¿ë°ú ÆÄÀÏÀ» MimeBodyPart·Î ³ª´©¾î ´ãÀ½
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ MimeBodyPartï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			
 			makeMessage(msg);
 			
 			msg.setHeader("X-Mailer", senderName);
 			
-			// ¸ÞÀÏº¸³½ ³¯Â¥
+			// ï¿½ï¿½ï¿½Ïºï¿½ï¿½ï¿½ ï¿½ï¿½Â¥
 			msg.setSentDate(new Date());
 			
-			// ¸ÞÀÏ Àü¼Û 
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 			Transport.send(msg);
 			
-			//¸ÞÀÏÀü¼ÛÈÄ ÆÄÀÏÀ» »èÁ¦ 
-			if(fileFullPath != null){ //pds/mailFile (½ÇÁ¦ ÀúÀå À§Ä¡)
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
+			if(fileFullPath != null){ //pds/mailFile (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡)
 				
 				File f = new File(fileFullPath);
 				if(f.exists()){
@@ -188,22 +188,22 @@ public class SendMail {
 	}
 
 	
-	// Ã·ºÎ ÆÄÀÏÀÌ ÀÖ´Â °æ¿ì bodyPart·Î ³ª´©¾î 
+	// Ã·ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ bodyPartï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	private void makeMessage(Message msg) throws MessagingException{
 		if(fileFullPath == null || fileFullPath.equals("")){
-			// ÆÄÀÏÀ» Ã·ºÎÇÏÁö ¾ÊÀº °æ¿ì 
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ 
 			msg.setText(content);
 			msg.setHeader("Content-type", mailType);
 		}else{
-			// ÆÄÀÏÀ» Ã·ºÎÇßÀ½
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			
-			// ¸ÞÀÏ ³»¿ë
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			MimeBodyPart mbp1 = new MimeBodyPart();
 			
 			mbp1.setText(content);
 			mbp1.setHeader("Content-type", mailType);
 			
-			//Ã·ºÎ ÆÄÀÏ
+			//Ã·ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			
 			MimeBodyPart mbp2 = new MimeBodyPart();
 			FileDataSource fds = new FileDataSource(fileFullPath);
